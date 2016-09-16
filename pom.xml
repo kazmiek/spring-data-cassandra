@@ -78,6 +78,7 @@
 		<project.type>multi</project.type>
 		<springdata.commons>2.0.0.DATACMNS-836-SNAPSHOT</springdata.commons>
 		<reactor>3.0.2.RELEASE</reactor>
+		<rxjava>1.1.9</rxjava>
 	</properties>
 
 	<repositories>
