@@ -269,7 +269,7 @@ public class ReactiveCassandraTemplate implements ReactiveCassandraOperations {
 
 		CqlIdentifier tableName = getTableName(entity);
 
-		Insert insertQuery = createInsertQuery(tableName.toCql(), entity, options, converter);
+		Insert insertQuery = QueryUtils.createInsertQuery(tableName.toCql(), entity, options, converter);
 
 		return cqlOperations.execute((ReactiveSessionCallback<T>) session -> (Publisher<T>) session.execute(insertQuery)
 				.flatMap(reactiveResultSet -> reactiveResultSet.wasApplied() ? Mono.just(entity) : Mono.empty())).next();
@@ -315,7 +315,7 @@ public class ReactiveCassandraTemplate implements ReactiveCassandraOperations {
 
 		CqlIdentifier tableName = getTableName(entity);
 
-		Update update = createUpdateQuery(tableName.toCql(), entity, options, converter);
+		Update update = QueryUtils.createUpdateQuery(tableName.toCql(), entity, options, converter);
 
 		return cqlOperations.execute((ReactiveSessionCallback<T>) session -> (Publisher<T>) session.execute(update)
 				.flatMap(reactiveResultSet -> reactiveResultSet.wasApplied() ? Mono.just(entity) : Mono.empty())).next();
@@ -379,7 +379,7 @@ public class ReactiveCassandraTemplate implements ReactiveCassandraOperations {
 
 		CqlIdentifier tableName = getTableName(entity);
 
-		Delete delete = createDeleteQuery(tableName.toCql(), entity, options, converter);
+		Delete delete = QueryUtils.createDeleteQuery(tableName.toCql(), entity, options, converter);
 
 		return cqlOperations.execute((ReactiveSessionCallback<T>) session -> (Publisher<T>) session.execute(delete)
 				.flatMap(reactiveResultSet -> reactiveResultSet.wasApplied() ? Mono.just(entity) : Mono.empty())).next();
