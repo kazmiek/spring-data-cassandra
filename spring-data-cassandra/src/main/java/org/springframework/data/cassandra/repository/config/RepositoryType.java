@@ -17,9 +17,9 @@ package org.springframework.data.cassandra.repository.config;
 
 import java.lang.reflect.Method;
 
-import org.springframework.data.repository.query.ReactiveWrappers;
 
 import lombok.experimental.UtilityClass;
+import org.springframework.data.repository.util.ReactiveWrappers;
 
 /**
  * Utility class to discover whether a repository interface uses reactive wrapper types.

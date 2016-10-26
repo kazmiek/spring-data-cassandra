@@ -26,9 +26,9 @@ import org.springframework.data.cassandra.repository.query.ReactiveCassandraQuer
 import org.springframework.data.cassandra.repository.query.ReactiveCassandraQueryExecution.ResultProcessingExecution;
 import org.springframework.data.cassandra.repository.query.ReactiveCassandraQueryExecution.SingleEntityExecution;
 import org.springframework.data.repository.query.ParameterAccessor;
-import org.springframework.data.repository.query.ReactiveWrapperConverters;
 import org.springframework.data.repository.query.RepositoryQuery;
 import org.springframework.data.repository.query.ResultProcessor;
+import org.springframework.data.repository.util.ReactiveWrappers;
 import org.springframework.util.Assert;
 
 import reactor.core.publisher.Flux;
@@ -142,7 +142,7 @@ public abstract class AbstractReactiveCassandraQuery implements RepositoryQuery 
 	private boolean hasReactiveWrapperParameter() {
 
 		for (CassandraParameters.CassandraParameter cassandraParameter : method.getParameters()) {
-			if (ReactiveWrapperConverters.supports(cassandraParameter.getType())) {
+			if (ReactiveWrappers.supports(cassandraParameter.getType())) {
 				return true;
 			}
 		}

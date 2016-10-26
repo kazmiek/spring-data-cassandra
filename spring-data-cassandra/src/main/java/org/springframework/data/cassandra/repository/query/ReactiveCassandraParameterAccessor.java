@@ -15,8 +15,9 @@
  */
 package org.springframework.data.cassandra.repository.query;
 
-import org.springframework.data.repository.query.ReactiveWrapperConverters;
 
+import org.springframework.data.repository.util.ReactiveWrapperConverters;
+import org.springframework.data.repository.util.ReactiveWrappers;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.MonoProcessor;
@@ -51,7 +52,7 @@ class ReactiveCassandraParameterAccessor extends CassandraParametersParameterAcc
 				continue;
 			}
 
-			if (ReactiveWrapperConverters.isSingleLike(value.getClass())) {
+			if (ReactiveWrappers.isSingleValueType(value.getClass())) {
 				subscriptions[i] = ReactiveWrapperConverters.toWrapper(value, Mono.class).subscribe();
 			} else {
 				subscriptions[i] = ReactiveWrapperConverters.toWrapper(value, Flux.class).collectList().subscribe();
